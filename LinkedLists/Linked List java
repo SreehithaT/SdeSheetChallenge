@@ -1,113 +1,91 @@
 /******************************************************************************
 
-Create a single linked list. Take input numbers from user. And print all elements of the linked list
+Create a single linked list. Take input numbers from user. And print all elements of the linked list. Delele elements and print again
 
 *******************************************************************************/
-import java.util.*;
-class Node{
-    int data;
-    Node next;
-    
-    Node(int item){
-        data=item;
-    }
-}
-
-public class Main
-{
-    
-	public static void main(String[] args) {
-	    Scanner sc=new Scanner(System.in);
-	    System.out.println("Taking elements into an array : ");
-	    System.out.println("Enter no.of elements");
-	    int n=sc.nextInt();
-	    System.out.println("Enter array elements : ");
-	    int arr[]=new int[n];
-	    for(int i=0;i<n;i++){
-	        arr[i]=sc.nextInt();
-	    }
-	    Node temp=new Node(arr[0]);
-	    Node head=temp;
-	    int i=1;
-	    while(i<n){
-	        Node curr=new Node(arr[i]);
-	        temp.next=curr;
-	        temp=curr;
-	        i++;
-	    }
-	    System.out.println("The linked list nodes are : ");
-	    Node curr=head;
-	    while(curr.next!=null){
-	        System.out.println(curr.data);
-	        curr=curr.next;
-	    }
-	    System.out.println(curr.data);
-		
-	}
-}
-***************************************************************************
 
 import java.util.*;
 class Node{
     int data;
     Node next;
     
-    Node(int item){
-        data=item;
+    Node(int val){
+        data=val;
     }
 }
-
-public class Main
-{
-    
-	public static void main(String[] args) {
-	    Scanner sc=new Scanner(System.in);
-	    System.out.println("Taking elements into an array : ");
-	    System.out.println("Enter no.of elements");
-	    int n=sc.nextInt();
-	    System.out.println("Enter array elements : ");
-	    int arr[]=new int[n];
-	    for(int i=0;i<n;i++){
-	        arr[i]=sc.nextInt();
-	    }
-	    Node head=new Node(arr[0]);
-	    createSLL(n,arr,head);
-	    
-	}
-	
-	public static void createSLL(int n, int arr[], Node head){
-	    Node temp= new Node(head.data);
-	    head=temp;
-	    int i=1;
-	    while(i<n){
-	        Node curr=new Node(arr[i]);
-	        temp.next=curr;
-	        temp=curr;
-	        i++;
-	    }
-	    System.out.println("The linked list nodes are : ");
-	    Node curr=head;
-	    while(curr.next!=null){
-	        System.out.println(curr.data);
-	        curr=curr.next;
-	    }
-	    System.out.println(curr.data);
-	    
-	}
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter no.of elements : ");
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements : ");
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        Node head;
+        // Create LL 
+        head=createLL(arr,n);
+        
+        //Print LL
+        printLL(head);
+        
+        //Delete LL 
+        System.out.println("Enter element to be deleted : ");
+        int ele=sc.nextInt();
+        head=deleteLL(head,ele);
+        
+        //Print LL
+        printLL(head);
+    } 
+    public static Node createLL(int arr[], int n) {
+        Node temp=new Node(arr[0]);
+        Node head=temp;
+        int i=1;
+        while(i<n){
+            Node curr=new Node(arr[i]);
+            temp.next=curr;
+            temp=curr;
+            i++;
+        }
+        return head;
+    }
+    public static void printLL(Node head){
+        System.out.println("The elements of LL : ");
+        Node curr=head;
+        while(curr!=null){
+            System.out.println(curr.data);
+            curr=curr.next;
+        }
+    }
+    public static Node deleteLL(Node head, int ele){
+        Node curr=head;
+        if(curr.data==ele){
+            return head.next;
+        }
+        while(curr.next!=null){
+            if(curr.next.data==ele){
+                curr.next=curr.next.next;
+                return head;
+            }
+            curr=curr.next;
+        }
+        return head;
+    }
 }
-
-
-***************************************************************************
-
-Taking elements into an array : 
-Enter no.of elements
-4
-Enter array elements : 
-1 4 2 3
-The linked list nodes are : 
+******************************************************************************
+Enter no.of elements : 
+3
+Enter elements : 
+1 2 3
+The elements of LL : 
 1
+2
+3
+Enter element to be deleted : 
 4
+The elements of LL : 
+1
 2
 3
 
-*****************************************************************************

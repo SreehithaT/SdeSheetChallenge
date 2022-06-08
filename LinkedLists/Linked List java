@@ -1,1 +1,66 @@
+/******************************************************************************
 
+Create a single linked list. Take input numbers from user. And print all elements of the linked list
+
+*******************************************************************************/
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    
+    Node(int item){
+        data=item;
+    }
+}
+
+public class Main
+{
+    
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    System.out.println("Taking elements into an array : ");
+	    System.out.println("Enter no.of elements");
+	    int n=sc.nextInt();
+	    System.out.println("Enter array elements : ");
+	    int arr[]=new int[n];
+	    for(int i=0;i<n;i++){
+	        arr[i]=sc.nextInt();
+	    }
+	    Node temp=new Node(arr[0]);
+	    Node head=temp;
+	    int i=1;
+	    while(i<n){
+	        Node curr=new Node(arr[i]);
+	        temp.next=curr;
+	        temp=curr;
+	        i++;
+	    }
+	    System.out.println("The linked list nodes are : ");
+	    Node curr=head;
+	    while(curr.next!=null){
+	        System.out.println(curr.data);
+	        curr=curr.next;
+	    }
+	    System.out.println(curr.data);
+		
+	}
+}
+
+
+
+
+
+***************************************************************************
+
+Taking elements into an array : 
+Enter no.of elements
+4
+Enter array elements : 
+1 4 2 3
+The linked list nodes are : 
+1
+4
+2
+3
+
+*****************************************************************************
